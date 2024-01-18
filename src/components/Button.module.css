@@ -1,0 +1,12 @@
+.button {
+  margin: 10px;
+  width: 200px;
+  padding: 20px;
+  font-size: x-large;
+}
+
+.containerButtons {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}

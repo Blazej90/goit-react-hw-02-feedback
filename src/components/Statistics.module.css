@@ -1,0 +1,18 @@
+.sectionTitle {
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.statSection {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.statLabel {
+  margin-right: 10px;
+}
+
+.statValue {
+  font-weight: bold;
+}
