@@ -13,10 +13,8 @@
 //   );
 // };
 import React, { useState } from 'react';
-// import Button from './Button/Button';
-import Statistics from './Statistics/Statistics';
-import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
-import Section from './Section/Sections';
+import Button from './Button';
+import Statistics from './Statistics';
 import styles from './App.module.css';
 
 const App = () => {
@@ -45,25 +43,21 @@ const App = () => {
     return Math.round((state.good / totalFeedback) * 100);
   };
 
-  const feedbackOptions = Object.keys(state);
-
   return (
     <div className={styles.container}>
-      <Section title="Please leave feedback">
-        <FeedbackOptions
-          options={feedbackOptions}
-          onLeaveFeedback={handleButtonClick}
-        />
-      </Section>
-      <Section title="Statistics">
-        <Statistics
-          good={state.good}
-          neutral={state.neutral}
-          bad={state.bad}
-          total={countTotalFeedback()}
-          positivePercentage={countPositiveFeedbackPercentage()}
-        />
-      </Section>
+      <h1>Please leave feedback</h1>
+      <div className={styles.containerButtons}>
+        <Button onClick={() => handleButtonClick('good')} label="Good" />
+        <Button onClick={() => handleButtonClick('neutral')} label="Neutral" />
+        <Button onClick={() => handleButtonClick('bad')} label="Bad" />
+      </div>
+      <Statistics
+        good={state.good}
+        neutral={state.neutral}
+        bad={state.bad}
+        total={countTotalFeedback()}
+        positivePercentage={countPositiveFeedbackPercentage()}
+      />
     </div>
   );
 };
