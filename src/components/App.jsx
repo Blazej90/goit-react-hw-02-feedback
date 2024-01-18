@@ -1,22 +1,9 @@
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101',
-//       }}
-//     ></div>
-//   );
-// };
 import React, { useState } from 'react';
 // import Button from './Button/Button';
 import Statistics from './Statistics/Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Section from './Section/Sections';
+import Notification from './Notification/Notification';
 import styles from './App.module.css';
 
 const App = () => {
@@ -46,6 +33,7 @@ const App = () => {
   };
 
   const feedbackOptions = Object.keys(state);
+  const totalFeedback = countTotalFeedback();
 
   return (
     <div className={styles.container}>
@@ -55,15 +43,22 @@ const App = () => {
           onLeaveFeedback={handleButtonClick}
         />
       </Section>
-      <Section title="Statistics">
-        <Statistics
-          good={state.good}
-          neutral={state.neutral}
-          bad={state.bad}
-          total={countTotalFeedback()}
-          positivePercentage={countPositiveFeedbackPercentage()}
-        />
-      </Section>
+
+      {totalFeedback > 0 ? (
+        <Section title="Statistics">
+          <Statistics
+            good={state.good}
+            neutral={state.neutral}
+            bad={state.bad}
+            total={totalFeedback}
+            positivePercentage={countPositiveFeedbackPercentage()}
+          />
+        </Section>
+      ) : (
+        <Section title="Statistics">
+          <Notification message="There is no feedback" />
+        </Section>
+      )}
     </div>
   );
 };
