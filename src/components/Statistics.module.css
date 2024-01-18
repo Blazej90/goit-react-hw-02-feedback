@@ -10,9 +10,11 @@
 }
 
 .statLabel {
+  margin: 0;
   margin-right: 10px;
 }
 
 .statValue {
   font-weight: bold;
+  margin: 0;
 }

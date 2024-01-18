@@ -31,6 +31,18 @@ const App = () => {
     }));
   };
 
+  const countTotalFeedback = () => {
+    return state.good + state.neutral + state.bad;
+  };
+
+  const countPositiveFeedbackPercentage = () => {
+    const totalFeedback = countTotalFeedback();
+    if (totalFeedback === 0) {
+      return 0;
+    }
+    return Math.round((state.good / totalFeedback) * 100);
+  };
+
   return (
     <div className={styles.container}>
       <h1>Please leave feedback</h1>
@@ -39,7 +51,13 @@ const App = () => {
         <Button onClick={() => handleButtonClick('neutral')} label="Neutral" />
         <Button onClick={() => handleButtonClick('bad')} label="Bad" />
       </div>
-      <Statistics good={state.good} neutral={state.neutral} bad={state.bad} />
+      <Statistics
+        good={state.good}
+        neutral={state.neutral}
+        bad={state.bad}
+        total={countTotalFeedback()}
+        positivePercentage={countPositiveFeedbackPercentage()}
+      />
     </div>
   );
 };
